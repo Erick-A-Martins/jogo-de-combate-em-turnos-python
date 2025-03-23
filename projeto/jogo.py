@@ -1,3 +1,6 @@
+import random
+import os
+
 # Personagem: classe mae
 # Heroi: controlado pelo usuario
 # Inimigo: adversario do usuario
@@ -26,7 +29,7 @@ class Personagem:
             self.__vida = 0
 
     def atacar(self, alvo):
-        dano = self.__nivel * 2
+        dano = random.randint(self.get_nivel() * 2, self.get_nivel() * 4) # baseaso no nivel
         alvo.receber_ataque(dano)
         print(f"{self.get_nome()} atacou {alvo.get_nome()} e causou {dano} de dano!")
 
@@ -43,7 +46,7 @@ class Heroi(Personagem):
         return f"{super().exibir_detalhes()}\nHabilidade: {self.get_habilidade()}\n"
     
     def ataque_especial(self, alvo):
-        dano = self.get_nivel() * 5 # Dano aumentado
+        dano = random.randint(self.get_nivel() * 5, self.get_nivel() * 8) # Dano aumentado
         alvo.receber_ataque(dano)
         print(f"{self.get_nome()} usou a habilidade especial {self.get_habilidade()} em {alvo.get_nome()} e causou {dano} de dano!")
 
@@ -99,4 +102,4 @@ class Jogo:
 # Criar instância do jogo e iniciar batalha
 jogo = Jogo()
 jogo.iniciar_batalha()
-        
+    
